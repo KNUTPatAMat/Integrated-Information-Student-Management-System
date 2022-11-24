@@ -11,7 +11,7 @@ third-party application 기능 통합
 4. 강의 관리 시스템
 
 ### Flowchart
-<img src="https://github.com/KNUTPatAMat/Integrated-Information-Student-Management-System/blob/main/Image/flowchart.png" width="100px" height="100px" title="Flowchart"/>
+<img src="https://github.com/KNUTPatAMat/Integrated-Information-Student-Management-System/blob/main/Image/flowchart.png" width="500px" height="500px" title="Flowchart"/>
 
 
 ### Member
