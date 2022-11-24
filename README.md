@@ -1,18 +1,23 @@
 # 통합 정보 학생 관리 시스템
 
-## Description
+### Description
 한국교통대학교 통합정보시스템의 기능 일부를 학생 친화적으로 구현   
 third-party application 기능 통합
 
-## Main Function
+### Main Function
 1. 회원 관리 시스템
 2. 관리자 / 사용자 기능 분리
 3. 시간표 시스템
 4. 강의 관리 시스템
 
+### Member
+* 팀장 : 허인영 - https://github.com/orgs/KNUTPatAMat/people/inyeoung
+* 팀원 : 문경호
+* 팀원 : 김석진 - https://github.com/SeokjinKim00
+
 * * *
 
-## Commit Rule
+### Commit Rule
 * FEAT : 기능 추가
 * FIX : 버그 수정
 * DOCS : 문서 수정
