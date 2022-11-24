@@ -11,8 +11,8 @@ third-party application 기능 통합
 4. 강의 관리 시스템
 
 ### Member
-* 팀장 : 허인영 - https://github.com/orgs/KNUTPatAMat/people/inyeoung
-* 팀원 : 문경호
+* 팀장 : 허인영 - https://github.com/inyeoung
+* 팀원 : 문경호 - https://github.com/k0ho817
 * 팀원 : 김석진 - https://github.com/SeokjinKim00
 
 * * *
