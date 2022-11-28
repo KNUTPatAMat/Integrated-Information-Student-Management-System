@@ -1,8 +1,6 @@
-CREATE DATABASE  IF NOT EXISTS `system_java_db` /*!40100 DEFAULT CHARACTER SET utf8mb3 */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `system_java_db`;
 -- MySQL dump 10.13  Distrib 8.0.31, for Win64 (x86_64)
 --
--- Host: localhost    Database: system_java_db
+-- Host: localhost    Database: sys
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -18,33 +16,29 @@ USE `system_java_db`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `sys_config`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `sys_config`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `studentNumber` int NOT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `userID` varchar(30) DEFAULT NULL,
-  `userPassword` varchar(30) DEFAULT NULL,
-  `birth` timestamp NULL DEFAULT NULL,
-  `phone` varchar(30) DEFAULT NULL,
-  `sex` int DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+CREATE TABLE `sys_config` (
+  `variable` varchar(128) NOT NULL,
+  `value` varchar(128) DEFAULT NULL,
+  `set_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `set_by` varchar(128) DEFAULT NULL,
+  PRIMARY KEY (`variable`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `sys_config`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1111010,'홍길동','qwer','zxcv',NULL,'010-1234-5678',0);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `sys_config` WRITE;
+/*!40000 ALTER TABLE `sys_config` DISABLE KEYS */;
+INSERT INTO `sys_config` VALUES ('diagnostics.allow_i_s_tables','OFF','2022-11-24 16:11:09',NULL),('diagnostics.include_raw','OFF','2022-11-24 16:11:09',NULL),('ps_thread_trx_info.max_length','65535','2022-11-24 16:11:09',NULL),('statement_performance_analyzer.limit','100','2022-11-24 16:11:09',NULL),('statement_performance_analyzer.view',NULL,'2022-11-24 16:11:09',NULL),('statement_truncate_len','64','2022-11-24 16:11:09',NULL);
+/*!40000 ALTER TABLE `sys_config` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -56,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-25  5:17:52
+-- Dump completed on 2022-11-28 21:27:49
