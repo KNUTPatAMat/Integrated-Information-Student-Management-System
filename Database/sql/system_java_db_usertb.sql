@@ -28,7 +28,7 @@ CREATE TABLE `usertb` (
   `name` varchar(30) DEFAULT NULL,
   `userID` varchar(30) DEFAULT NULL,
   `userPwd` varchar(30) DEFAULT NULL,
-  `birth` timestamp NULL DEFAULT NULL,
+  `birth` date DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,
   `sex` int DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 23:37:45
+-- Dump completed on 2022-12-01  0:04:24
