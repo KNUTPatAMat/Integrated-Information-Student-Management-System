@@ -35,7 +35,7 @@ public class dbConn {
     }
 
     public void selectStudentData(int studentNumber) {
-        String sql = "select * from user where studentNumber = ?";
+        String sql = "select * from userTB where studentNumber = ?";
         PreparedStatement pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);

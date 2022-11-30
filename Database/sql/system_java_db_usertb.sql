@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `user`
+-- Table structure for table `usertb`
 --
 
-DROP TABLE IF EXISTS `user`;
+DROP TABLE IF EXISTS `usertb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `user` (
+CREATE TABLE `usertb` (
   `id` int NOT NULL AUTO_INCREMENT,
   `studentNumber` int NOT NULL,
   `name` varchar(30) DEFAULT NULL,
@@ -36,13 +36,13 @@ CREATE TABLE `user` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `usertb`
 --
 
-LOCK TABLES `user` WRITE;
-/*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,1111010,'홍길동','qwer','zxcv',NULL,'010-1234-5678',0);
-/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+LOCK TABLES `usertb` WRITE;
+/*!40000 ALTER TABLE `usertb` DISABLE KEYS */;
+INSERT INTO `usertb` VALUES (1,1111010,'홍길동','qwer','zxcv',NULL,'010-1234-5678',0);
+/*!40000 ALTER TABLE `usertb` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 23:24:05
+-- Dump completed on 2022-11-30 23:37:45

@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usertime`
+-- Table structure for table `uertimetb`
 --
 
-DROP TABLE IF EXISTS `usertime`;
+DROP TABLE IF EXISTS `uertimetb`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usertime` (
+CREATE TABLE `uertimetb` (
   `id` int NOT NULL AUTO_INCREMENT,
   `studentNumber` int NOT NULL,
   `mon` varchar(30) DEFAULT NULL,
@@ -37,12 +37,12 @@ CREATE TABLE `usertime` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usertime`
+-- Dumping data for table `uertimetb`
 --
 
-LOCK TABLES `usertime` WRITE;
-/*!40000 ALTER TABLE `usertime` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usertime` ENABLE KEYS */;
+LOCK TABLES `uertimetb` WRITE;
+/*!40000 ALTER TABLE `uertimetb` DISABLE KEYS */;
+/*!40000 ALTER TABLE `uertimetb` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-30 23:24:04
+-- Dump completed on 2022-11-30 23:37:44
