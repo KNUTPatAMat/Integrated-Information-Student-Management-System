@@ -16,33 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `usertime`
+-- Table structure for table `user`
 --
 
-DROP TABLE IF EXISTS `usertime`;
+DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `usertime` (
+CREATE TABLE `user` (
   `id` int NOT NULL AUTO_INCREMENT,
   `studentNumber` int NOT NULL,
-  `mon` varchar(30) DEFAULT NULL,
-  `tue` varchar(30) DEFAULT NULL,
-  `wen` varchar(30) DEFAULT NULL,
-  `thu` varchar(30) DEFAULT NULL,
-  `fri` varchar(30) DEFAULT NULL,
-  `sat` varchar(30) DEFAULT NULL,
-  `sun` varchar(30) DEFAULT NULL,
+  `name` varchar(30) DEFAULT NULL,
+  `userID` varchar(30) DEFAULT NULL,
+  `userPwd` varchar(30) DEFAULT NULL,
+  `birth` timestamp NULL DEFAULT NULL,
+  `phone` varchar(30) DEFAULT NULL,
+  `sex` int DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `usertime`
+-- Dumping data for table `user`
 --
 
-LOCK TABLES `usertime` WRITE;
-/*!40000 ALTER TABLE `usertime` DISABLE KEYS */;
-/*!40000 ALTER TABLE `usertime` ENABLE KEYS */;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,1111010,'홍길동','qwer','zxcv',NULL,'010-1234-5678',0);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -54,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-11-28 21:27:49
+-- Dump completed on 2022-11-30 23:24:05
