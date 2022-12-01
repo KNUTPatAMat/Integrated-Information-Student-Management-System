@@ -14,7 +14,7 @@ public class db {
     protected void dbConnection() {
         String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
         String userId = "root";
-        String userpwd = "secret key"; // git .ignore
+        String userpwd = "Secret Key"; // git .ignore
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, userId, userpwd);
@@ -57,7 +57,6 @@ public class db {
         }
         return userData;
     }
-
     protected String[] getUserDataRow(int studentNumber) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
         String[] userDataArray = new String[8];
@@ -113,9 +112,9 @@ public class db {
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
+    // Type Int
     protected void updateUser(int studentNumber, String column, int data) {
         String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
         pstmt = null;
@@ -129,6 +128,7 @@ public class db {
             e.printStackTrace();
         }
     }
+    // Type String
     protected void updateUser(int studentNumber, String column, String data) {
         String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
         pstmt = null;
@@ -148,11 +148,9 @@ public class db {
         // test code
         db userTable = new db();
         userTable.dbConnection();
-        // userTable.selectStudent(1111010);
         // userTable.insertUser(1111000, "james", "that", "that", "2000-01-01", "010-1234-5678", 0);
         System.out.println(userTable.getUserData(1111010, "name"));
         System.out.println(userTable.getUserData(1111010, "sex"));
-        String[] row = userTable.getUserDataRow(1111010);
         userTable.dbDisconnection();
     }
 }
