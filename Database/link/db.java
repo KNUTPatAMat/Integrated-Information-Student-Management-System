@@ -85,6 +85,33 @@ public class db {
 
     }
 
+    public void updateUser(int studentNumber, String column, int data) {
+        String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
+        pstmt = null;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, column);
+            pstmt.setInt(2, data);
+            pstmt.setInt(3, studentNumber);
+            pstmt.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void updateUser(int studentNumber, String column, String data) {
+        String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
+        pstmt = null;
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setString(1, column);
+            pstmt.setString(2, data);
+            pstmt.setInt(3, studentNumber);
+            pstmt.executeUpdate();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) {
         // System.out.println("hello");
         // test code
