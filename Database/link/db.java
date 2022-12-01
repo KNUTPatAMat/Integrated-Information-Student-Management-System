@@ -1,5 +1,4 @@
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
@@ -12,7 +11,7 @@ public class db {
     String driver = "com.mysql.cj.jdbc.Driver";
     PreparedStatement pstmt = null;
 
-    public void dbConnection() {
+    protected void dbConnection() {
         String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
         String userId = "root";
         String userpwd = "secret key"; // git .ignore
@@ -25,7 +24,7 @@ public class db {
             e.printStackTrace();
         }
     }
-    public void dbDisconnection() {
+    protected void dbDisconnection() {
         try {
             conn.close();
             System.out.println("Disconnection Success");
@@ -34,21 +33,18 @@ public class db {
         }
     }
 
-    public void selectStudent(int studentNumber) {
+    protected String getUserData(int studentNumber, String dataIndex) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
+        String userData = new String();
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setInt(1, studentNumber);
             rs = pstmt.executeQuery();
             if(rs.next()) {
-                System.out.println("id: " + rs.getInt("id"));
-                System.out.println("student number: " + rs.getInt("studentNumber"));
-                System.out.println("student name: " + rs.getString("name"));
-                System.out.println("user ID: " + rs.getString("userID"));
-                System.out.println("user password: " + rs.getString("userPwd"));
-                System.out.println("birth: " + rs.getDate("birth"));
-                System.out.println("phone number: " + rs.getString("phone"));
-                System.out.println("sex: " + rs.getInt("sex"));
+                userData = rs.getString(dataIndex);
+            }
+            else {
+                userData = "Error";
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -59,9 +55,44 @@ public class db {
                 }
             } catch (Exception e2) {}
         }
+        return userData;
     }
 
-    public void insertUser(int studentNumber, String name, String userID, String userPwd, String birth, String phone, int sex) {
+    protected String[] getUserDataRow(int studentNumber) {
+        String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
+        String[] userDataArray = new String[8];
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentNumber);
+            rs = pstmt.executeQuery();
+            if(rs.next()) {
+                userDataArray = new String[] {
+                    rs.getString("id"),
+                    rs.getString("studentNumber"),
+                    rs.getString("name"),
+                    rs.getString("userID"),
+                    rs.getString("userPwd"),
+                    rs.getString("birth"),
+                    rs.getString("phone"),
+                    rs.getString("sex")
+                };
+            }
+            else {
+                userDataArray = new String[] {"Error"};
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if(pstmt != null && !pstmt.isClosed()) {
+                    pstmt.close();
+                }
+            } catch (Exception e2) {}
+        }
+        return userDataArray;
+    }
+
+    protected void insertUser(int studentNumber, String name, String userID, String userPwd, String birth, String phone, int sex) {
         String sql = "INSERT INTO userTB(studentNumber, name, userID, userPwd, birth, phone, sex) VALUES (?,?,?,?,?,?,?)";
         try {
             pstmt = conn.prepareStatement(sql);
@@ -85,7 +116,7 @@ public class db {
 
     }
 
-    public void updateUser(int studentNumber, String column, int data) {
+    protected void updateUser(int studentNumber, String column, int data) {
         String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
         pstmt = null;
         try {
@@ -98,7 +129,7 @@ public class db {
             e.printStackTrace();
         }
     }
-    public void updateUser(int studentNumber, String column, String data) {
+    protected void updateUser(int studentNumber, String column, String data) {
         String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
         pstmt = null;
         try {
@@ -118,8 +149,10 @@ public class db {
         db userTable = new db();
         userTable.dbConnection();
         // userTable.selectStudent(1111010);
-        userTable.insertUser(1111000, "james", "that", "that", "2000-01-01", "010-1234-5678", 0);
-        userTable.selectStudent(1111000);
+        // userTable.insertUser(1111000, "james", "that", "that", "2000-01-01", "010-1234-5678", 0);
+        System.out.println(userTable.getUserData(1111010, "name"));
+        System.out.println(userTable.getUserData(1111010, "sex"));
+        String[] row = userTable.getUserDataRow(1111010);
         userTable.dbDisconnection();
     }
 }
