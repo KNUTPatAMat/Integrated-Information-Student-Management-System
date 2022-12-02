@@ -1,39 +1,6 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
-import java.sql.ResultSet;
+package database.link;
 
-public class db {
-    Connection conn = null;
-    Statement state = null;
-    ResultSet rs = null;
-    String driver = "com.mysql.cj.jdbc.Driver";
-    PreparedStatement pstmt = null;
-
-    // Connection Control
-    protected void dbConnection() {
-        String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
-        String userId = "root";
-        String userpwd = "Java1ban!@"; // git .ignore
-        try {
-            Class.forName(driver);
-            conn = DriverManager.getConnection(url, userId, userpwd);
-            // state = conn.createStatement();
-            System.out.println("Connection Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    protected void dbDisconnection() {
-        try {
-            conn.close();
-            System.out.println("Disconnection Success");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+public class dbControl extends dbCon {
     // Get Data
     protected int getDataNum() {
         String sql = "SELECT COUNT(*) FROM userTB";
@@ -131,33 +98,6 @@ public class db {
         }
         return userDataArray;
     }
-
-    // Insert Data
-    protected void insertUser(int studentNumber, String name, String userID, String userPwd, String birth, String phone, int sex, String grade, String major) {
-        String sql = "INSERT INTO userTB(studentNumber, name, userID, userPwd, birth, phone, sex, grade, major) VALUES (?,?,?,?,?,?,?,?,?)";
-        try {
-            pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, studentNumber);
-            pstmt.setString(2, name);
-            pstmt.setString(3, userID);
-            pstmt.setString(4, userPwd);
-            pstmt.setDate(5, java.sql.Date.valueOf(birth));
-            pstmt.setString(6, phone);
-            pstmt.setInt(7, sex);
-            pstmt.setString(8, grade);
-            pstmt.setString(9, major);
-            int count = pstmt.executeUpdate();
-            if( count == 0 ){
-                System.out.println("데이터 입력 실패");
-            }
-            else{
-                System.out.println("데이터 입력 성공");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
     // Update Data
     protected void updateUser(int studentNumber, String column, int data) { // Type Int
         String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
@@ -185,11 +125,36 @@ public class db {
             e.printStackTrace();
         }
     }
+    // Insert Data
+    protected void insertUser(int studentNumber, String name, String userID, String userPwd, String birth, String phone, int sex, String grade, String major) {
+        String sql = "INSERT INTO userTB(studentNumber, name, userID, userPwd, birth, phone, sex, grade, major) VALUES (?,?,?,?,?,?,?,?,?)";
+        try {
+            pstmt = conn.prepareStatement(sql);
+            pstmt.setInt(1, studentNumber);
+            pstmt.setString(2, name);
+            pstmt.setString(3, userID);
+            pstmt.setString(4, userPwd);
+            pstmt.setDate(5, java.sql.Date.valueOf(birth));
+            pstmt.setString(6, phone);
+            pstmt.setInt(7, sex);
+            pstmt.setString(8, grade);
+            pstmt.setString(9, major);
+            int count = pstmt.executeUpdate();
+            if( count == 0 ){
+                System.out.println("데이터 입력 실패");
+            }
+            else{
+                System.out.println("데이터 입력 성공");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
     public static void main(String[] args) {
         // System.out.println("hello");
         // test code
-        db userTable = new db();
+        dbControl userTable = new dbControl();
         userTable.dbConnection();
         // userTable.insertUser(1111000, "james", "that", "that", "2000-01-01", "010-1234-5678", 0);
         // System.out.println(userTable.getUserData(1111010, "name"));
