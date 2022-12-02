@@ -7,17 +7,17 @@ import java.sql.Statement;
 import java.sql.ResultSet;
 
 public class dbCon {
-    Connection conn = null;
-    Statement state = null;
-    ResultSet rs = null;
-    String driver = "com.mysql.cj.jdbc.Driver";
-    PreparedStatement pstmt = null;
+    protected Connection conn = null;
+    protected Statement state = null;
+    protected ResultSet rs = null;
+    protected String driver = "com.mysql.cj.jdbc.Driver";
+    protected PreparedStatement pstmt = null;
 
     // Connection Control
-    protected void dbConnection() {
-        String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
-        String userId = "root";
-        String userpwd = ""; // git .ignore
+    public void dbConnection() {
+        final String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
+        final String userId = "root";
+        final String userpwd = "seokjin0827!@"; // git .ignore
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, userId, userpwd);
