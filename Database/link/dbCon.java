@@ -12,12 +12,13 @@ public class dbCon {
     protected ResultSet rs = null;
     protected String driver = "com.mysql.cj.jdbc.Driver";
     protected PreparedStatement pstmt = null;
+    private String databaseName = "system_java_db";
 
     // Connection Control
     public void dbConnection() {
-        final String url = "jdbc:mysql://localhost:3306/system_java_db?serverTimezone=Asia/Seoul&useSSL=false";
+        final String url = "jdbc:mysql://localhost:3306/"+databaseName+"?serverTimezone=Asia/Seoul&useSSL=false";
         final String userId = "root";
-        final String userpwd = "seokjin0827!@"; // git .ignore
+        final String userpwd = "secret"; // git .ignore
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, userId, userpwd);
