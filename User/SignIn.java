@@ -12,8 +12,9 @@ public class SignIn {
     dbControl userTable = new dbControl();
     public String[] signInDataArr;
 
-    public void signInData(String name, int studentNumber, String userPwd1, String userPwd2, String birth, String phone, int sex, String grade, String major){
+    public boolean signInData(String name, int studentNumber, String userPwd1, String userPwd2, String birth, String phone, int sex, String grade, String major){
         userTable.dbConnection();
+        boolean result = false;
         String sexStr ;
         if (sex == 0){
             sexStr = "male";
@@ -26,6 +27,8 @@ public class SignIn {
             if (isExitStudentNumber()) {
                 if (pwdPattern()) {
                     userTable.getInsertUser(name, studentNumber, userPwd1, birth, phone, sex, grade, major);
+                    System.out.println("회원가입 성공");
+                    result = true;
                 } else {
                     System.out.println("회원가입 실패");
                 }
@@ -36,6 +39,7 @@ public class SignIn {
             System.out.println("회원가입 실패");
         }
         userTable.dbDisconnection();
+        return result;
     }
     //전체 값 입력했는지 ?
     protected boolean isDataFull() {
@@ -51,9 +55,6 @@ public class SignIn {
     protected boolean isExitStudentNumber(){
         String[] studentNum = userTable.getGetUserDataColumn("studentNumber");
         List<String> studentNumList = new ArrayList<>(Arrays.asList(studentNum));
-        for (String string : studentNumList) {
-            System.out.println(string);
-        }
         if ((studentNumList.indexOf(signInDataArr[0]))>=0) { //studentNumList내부에 parameter studentNumber값 존재
             System.out.println("학번 중복");
             return false;

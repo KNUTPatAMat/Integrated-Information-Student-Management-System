@@ -44,6 +44,11 @@ public class dbControl extends dbCon {
         }
         return userData;
     }
+
+    public String getGetUserData(int studentNumber, String dataIndex) {
+        return getUserData(studentNumber, dataIndex);
+    }
+
     protected String[] getUserDataRow(int studentNumber) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
         String[] userDataArray = new String[8];
@@ -75,6 +80,11 @@ public class dbControl extends dbCon {
         }
         return userDataArray;
     }
+
+    public String[] getGetUserDataRow(int studentNumber) {
+        return getUserDataRow(studentNumber);
+    }
+
     protected String[] getUserDataColumn(String index) {
         int dataNum = this.getDataNum();
         int point = 0;
