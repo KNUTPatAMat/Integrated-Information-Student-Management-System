@@ -94,6 +94,7 @@ public class SignIn {
         signIn.signInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
         signIn.signInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
         signIn.signInData("허인영", 1234567, "Ansrudgh", "Ansrudgh", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
+        signIn.signInData("허인영", 1234567, "Gjdlsdud1!", "Gjdlsdud1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
         signIn.signInData("안기모", 5678909, "Ansrudgh1!@#", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
     }
 }

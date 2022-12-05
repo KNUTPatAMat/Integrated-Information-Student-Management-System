@@ -6,12 +6,14 @@ import Database.link.dbControl;
 
 public class LogIn {
     dbControl userTable = new dbControl();
+    int studentNum;
     //학번 존재하는지 확인
     protected boolean isExitStudentNumber(int studentNumber){
-        String[] studentNum = userTable.getGetUserDataColumn("studentNumber");
-        List<String> studentNumList = new ArrayList<>(Arrays.asList(studentNum));
+        String[] studentNumArr = userTable.getGetUserDataColumn("studentNumber");
+        List<String> studentNumList = new ArrayList<>(Arrays.asList(studentNumArr));
         if ((studentNumList.indexOf(Integer.toString(studentNumber)))>=0) { //studentNumList내부에 parameter studentNumber값 존재
             System.out.println("학번 존재");
+            studentNum = studentNumber;
             return true;
         } else {
             System.out.println("학번 없음");
@@ -19,8 +21,8 @@ public class LogIn {
         }
     }
     
-    protected boolean isRightPwd(int studentNumber, String pwd){
-        String studentInfo = userTable.getGetUserData(studentNumber, "userPwd");
+    protected boolean isRightPwd(String pwd){
+        String studentInfo = userTable.getGetUserData(studentNum, "userPwd");
         if (studentInfo.equals(pwd)){
             System.out.println("비밀번호 일치");
             return true;
@@ -34,7 +36,7 @@ public class LogIn {
         userTable.dbConnection();
         boolean result = false;
         if (isExitStudentNumber(studentNumber)) {
-            if (isRightPwd(studentNumber, pwd)){
+            if (isRightPwd(pwd)){
                 result = true;
             }
         }
@@ -48,6 +50,6 @@ public class LogIn {
     }
     public static void main(String[] args) {
         LogIn login = new LogIn();
-        login.logIn(1826015, "Ansrudgh1!");
+        login.logIn(1234567, "Gjdlsdud1!");
     }
 }

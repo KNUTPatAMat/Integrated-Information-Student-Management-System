@@ -1,5 +1,4 @@
 package Database.link;
-import User.SignIn;
 
 public class dbControl extends dbCon {
     // Get Data
@@ -165,16 +164,5 @@ public class dbControl extends dbCon {
     }
     public void getInsertUser(String studentName, int studentNumber, String userPwd, String birth, String phone, int sex, String grade, String major){
         insertUser(studentName, studentNumber, userPwd, birth, phone, sex, grade, major);
-    }
-
-    public static void main(String[] args) {
-        SignIn signIn = new SignIn();
-
-        dbControl userTable = new dbControl();
-        userTable.dbConnection();
-        // signIn.getSignInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-        userTable.insertUser("문경호", 1826015, "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-
-        userTable.dbDisconnection();
     }
 }
