@@ -1,4 +1,5 @@
 package Database.link;
+import User.SignIn;
 
 public class dbControl extends dbCon {
     // Get Data
@@ -43,7 +44,7 @@ public class dbControl extends dbCon {
         }
         return userData;
     }
-    public String[] getUserDataRow(int studentNumber) {
+    protected String[] getUserDataRow(int studentNumber) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
         String[] userDataArray = new String[8];
         try {
@@ -74,7 +75,7 @@ public class dbControl extends dbCon {
         }
         return userDataArray;
     }
-    public String[] getUserDataColumn(String index) {
+    protected String[] getUserDataColumn(String index) {
         int dataNum = this.getDataNum();
         int point = 0;
         String sql = "SELECT * FROM userTB";
@@ -96,6 +97,9 @@ public class dbControl extends dbCon {
             } catch (Exception e2) {}
         }
         return userDataArray;
+    }
+    public String[] getGetUserDataColumn(String index){
+        return getUserDataColumn(index);
     }
     // Update Data
     protected void updateUser(int studentNumber, String column, int data) { // Type Int
@@ -125,8 +129,9 @@ public class dbControl extends dbCon {
         }
     }
     // Insert Data
-    protected void insertUser(String studentName,int studentNumber, String userID, String userPwd, String birth, String phone, int sex, String grade, String major) {
+    protected void insertUser(String studentName, int studentNumber, String userPwd, String birth, String phone, int sex, String grade, String major) {
         String sql = "INSERT INTO userTB(studentName, studentNumber, userPwd, birth, phone, sex, grade, major) VALUES (?,?,?,?,?,?,?,?)";
+        pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
             pstmt.setString(1, studentName);
@@ -148,23 +153,18 @@ public class dbControl extends dbCon {
             e.printStackTrace();
         }
     }
+    public void getInsertUser(String studentName, int studentNumber, String userPwd, String birth, String phone, int sex, String grade, String major){
+        insertUser(studentName, studentNumber, userPwd, birth, phone, sex, grade, major);
+    }
 
     public static void main(String[] args) {
-        // System.out.println("hello");
-        // test code
+        SignIn signIn = new SignIn();
+
         dbControl userTable = new dbControl();
         userTable.dbConnection();
+        // signIn.getSignInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
+        userTable.insertUser("문경호", 1826015, "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
 
-        String[] abc = userTable.getUserDataRow(1826015);
-        for (String string : abc) {
-            System.out.println(string);
-        }
-
-        System.out.println(userTable.getDataNum());
-        String[] x = userTable.getUserDataColumn("studentName");
-        for (int i = 0; i < x.length; i++) {
-            System.out.println(x[i]);
-        }
         userTable.dbDisconnection();
     }
 }

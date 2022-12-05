@@ -12,13 +12,13 @@ public class dbCon {
     protected ResultSet rs = null;
     protected String driver = "com.mysql.cj.jdbc.Driver";
     protected PreparedStatement pstmt = null;
-    private String databaseName = "system_java_db";
+    private String databaseName = "StudentManagement";
 
     // Connection Control
     public void dbConnection() {
         final String url = "jdbc:mysql://localhost:3306/"+databaseName+"?serverTimezone=Asia/Seoul&useSSL=false";
         final String userId = "root";
-        final String userpwd = "secret"; // git .ignore
+        final String userpwd = "Ansrudgh1!"; // git .ignore
         try {
             Class.forName(driver);
             conn = DriverManager.getConnection(url, userId, userpwd);
@@ -28,7 +28,7 @@ public class dbCon {
             e.printStackTrace();
         }
     }
-    protected void dbDisconnection() {
+    public void dbDisconnection() {
         try {
             conn.close();
             System.out.println("Disconnection Success");
