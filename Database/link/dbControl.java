@@ -1,4 +1,4 @@
-package database.link;
+package Database.link;
 
 public class dbControl extends dbCon {
     // Get Data
@@ -43,7 +43,7 @@ public class dbControl extends dbCon {
         }
         return userData;
     }
-    protected String[] getUserDataRow(int studentNumber) {
+    public String[] getUserDataRow(int studentNumber) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
         String[] userDataArray = new String[8];
         try {
@@ -74,7 +74,7 @@ public class dbControl extends dbCon {
         }
         return userDataArray;
     }
-    protected String[] getUserDataColumn(String index) {
+    public String[] getUserDataColumn(String index) {
         int dataNum = this.getDataNum();
         int point = 0;
         String sql = "SELECT * FROM userTB";
@@ -154,9 +154,12 @@ public class dbControl extends dbCon {
         // test code
         dbControl userTable = new dbControl();
         userTable.dbConnection();
-        // userTable.insertUser(1111000, "james", "that", "that", "2000-01-01", "010-1234-5678", 0);
-        // System.out.println(userTable.getUserData(1111010, "name"));
-        // System.out.println(userTable.getUserData(1111010, "sex"));
+
+        String[] abc = userTable.getUserDataRow(1826015);
+        for (String string : abc) {
+            System.out.println(string);
+        }
+
         System.out.println(userTable.getDataNum());
         String[] x = userTable.getUserDataColumn("studentName");
         for (int i = 0; i < x.length; i++) {
