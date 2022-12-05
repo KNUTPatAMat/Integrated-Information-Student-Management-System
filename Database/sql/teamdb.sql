@@ -54,9 +54,8 @@ DROP TABLE IF EXISTS `usertb`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usertb` (
   `id` int NOT NULL AUTO_INCREMENT,
+  `studentName` varchar(30) DEFAULT NULL,
   `studentNumber` int NOT NULL,
-  `name` varchar(30) DEFAULT NULL,
-  `userID` varchar(30) DEFAULT NULL,
   `userPwd` varchar(30) DEFAULT NULL,
   `birth` date DEFAULT NULL,
   `phone` varchar(30) DEFAULT NULL,

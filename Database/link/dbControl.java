@@ -53,9 +53,8 @@ public class dbControl extends dbCon {
             if(rs.next()) {
                 userDataArray = new String[] {
                     rs.getString("id"),
+                    rs.getString("studentName"),
                     rs.getString("studentNumber"),
-                    rs.getString("name"),
-                    rs.getString("userID"),
                     rs.getString("userPwd"),
                     rs.getString("birth"),
                     rs.getString("phone"),
@@ -126,19 +125,18 @@ public class dbControl extends dbCon {
         }
     }
     // Insert Data
-    protected void insertUser(int studentNumber, String name, String userID, String userPwd, String birth, String phone, int sex, String grade, String major) {
-        String sql = "INSERT INTO userTB(studentNumber, name, userID, userPwd, birth, phone, sex, grade, major) VALUES (?,?,?,?,?,?,?,?,?)";
+    protected void insertUser(String studentName,int studentNumber, String userID, String userPwd, String birth, String phone, int sex, String grade, String major) {
+        String sql = "INSERT INTO userTB(studentName, studentNumber, userPwd, birth, phone, sex, grade, major) VALUES (?,?,?,?,?,?,?,?)";
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, studentNumber);
-            pstmt.setString(2, name);
-            pstmt.setString(3, userID);
-            pstmt.setString(4, userPwd);
-            pstmt.setDate(5, java.sql.Date.valueOf(birth));
-            pstmt.setString(6, phone);
-            pstmt.setInt(7, sex);
-            pstmt.setString(8, grade);
-            pstmt.setString(9, major);
+            pstmt.setString(1, studentName);
+            pstmt.setInt(2, studentNumber);
+            pstmt.setString(3, userPwd);
+            pstmt.setDate(4, java.sql.Date.valueOf(birth));
+            pstmt.setString(5, phone);
+            pstmt.setInt(6, sex);
+            pstmt.setString(7, grade);
+            pstmt.setString(8, major);
             int count = pstmt.executeUpdate();
             if( count == 0 ){
                 System.out.println("데이터 입력 실패");
@@ -160,7 +158,7 @@ public class dbControl extends dbCon {
         // System.out.println(userTable.getUserData(1111010, "name"));
         // System.out.println(userTable.getUserData(1111010, "sex"));
         System.out.println(userTable.getDataNum());
-        String[] x = userTable.getUserDataColumn("name");
+        String[] x = userTable.getUserDataColumn("studentName");
         for (int i = 0; i < x.length; i++) {
             System.out.println(x[i]);
         }
