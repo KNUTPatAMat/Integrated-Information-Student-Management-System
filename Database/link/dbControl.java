@@ -44,7 +44,7 @@ public class dbControl extends dbCon {
         }
         return userData;
     }
-    public String[] getUserDataRow(int studentNumber) {
+    protected String[] getUserDataRow(int studentNumber) {
         String sql = "SELECT * FROM userTB WHERE studentNumber = ?";
         String[] userDataArray = new String[8];
         try {
@@ -75,7 +75,7 @@ public class dbControl extends dbCon {
         }
         return userDataArray;
     }
-    public String[] getUserDataColumn(String index) {
+    protected String[] getUserDataColumn(String index) {
         int dataNum = this.getDataNum();
         int point = 0;
         String sql = "SELECT * FROM userTB";
