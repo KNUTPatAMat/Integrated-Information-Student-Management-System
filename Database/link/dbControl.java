@@ -125,17 +125,23 @@ public class dbControl extends dbCon {
         }
     }
     protected void updateUser(int studentNumber, String column, String data) { // Type String
-        String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
+        String sql = ("UPDATE usertb SET "+column+"=? WHERE studentNumber=?");
         pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, column);
-            pstmt.setString(2, data);
-            pstmt.setInt(3, studentNumber);
+            // pstmt.setString(1, column);
+            pstmt.setString(1, data);
+            pstmt.setInt(2, studentNumber);
             pstmt.executeUpdate();
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+    public void getUpdateUser(int studentNumber, String column, int data){
+        updateUser(studentNumber, column, data);
+    }
+    public void getUpdateUser(int studentNumber, String column, String data){
+        updateUser(studentNumber, column, data);
     }
     // Insert Data
     protected void insertUser(String studentName, int studentNumber, String userPwd, String birth, String phone, int sex, String grade, String major) {

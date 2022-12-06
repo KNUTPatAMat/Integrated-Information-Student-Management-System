@@ -27,74 +27,75 @@ public class SignIn {
             if (isExitStudentNumber()) {
                 if (pwdPattern()) {
                     userTable.getInsertUser(name, studentNumber, userPwd1, birth, phone, sex, grade, major);
-                    System.out.println("회원가입 성공");
                     result = true;
-                } else {
-                    System.out.println("회원가입 실패");
                 }
-            } else {
-                System.out.println("회원가입 실패");
             }
+        }
+        userTable.dbDisconnection();
+        if (result) {
+            System.out.println("회원가입 성공");
         } else {
             System.out.println("회원가입 실패");
         }
-        userTable.dbDisconnection();
         return result;
     }
     //전체 값 입력했는지 ?
     protected boolean isDataFull() {
         boolean result = true;
         for (String string : signInDataArr) {
-            if (string == "Null"){
+            if (string.equals("Null")){
                 result = false;
             }
+        }
+        if (result) {
+            System.out.println("전체 Data 입력\t\t...OK");
+        }else{
+            System.out.println("전체 Data 입력\t\t...ERROR");
         }
         return result;
     }
     //학번 중복 유무
     protected boolean isExitStudentNumber(){
+        boolean result = false;
         String[] studentNum = userTable.getGetUserDataColumn("studentNumber");
         List<String> studentNumList = new ArrayList<>(Arrays.asList(studentNum));
         if ((studentNumList.indexOf(signInDataArr[0]))>=0) { //studentNumList내부에 parameter studentNumber값 존재
-            System.out.println("학번 중복");
-            return false;
+            System.out.println("학번 미중복\t\t...ERROR");
         } else {
-            System.out.println("학번 미중복");
-            return true;
+            System.out.println("학번 미중복\t\t...OK");
+            result =  true;
         }
+        return result;
     }
     //비밀번호 확인을 제대로 입력했는지 ?
     protected boolean isSamePwd(){
-        if (signInDataArr[2] == signInDataArr[3]) {
-            System.out.println("비밀번호 일치");
+        if (signInDataArr[2].equals(signInDataArr[3])) {
+            System.out.println("비밀번호 일치\t\t...OK");
             return true;
         } else {
-            System.out.println("비밀번호 불일치");
+            System.out.println("비밀번호 일치\t\t...ERROR");
             return false;
         }
     }
     //패스워드 패턴에 부합하는지 + 비밀번호 확인
     protected boolean pwdPattern() {
+        boolean result = false;
         String pass = signInDataArr[2];
         Pattern passPattern1 = Pattern.compile("^(?=.*[a-zA-Z])(?=.*\\d)(?=.*\\W).{8,20}$");
         Matcher passMatcher = passPattern1.matcher(pass);
         if(!passMatcher.find()) {
-            System.out.println("영문 숫자 특수기호 조합 8자리 이상이 아닙니다.");
-            return false;
+            System.out.println("비밀번호 생성 규칙\t...ERROR");
         } else {
+            System.out.println("비밀번호 생성 규칙\t...OK");
             if (isSamePwd()) {
-                return true;
-            } else {
-                return false;
+                result = true;
             }
         }
+        return result;
     }
+
     public static void main(String[] args) {
-        SignIn signIn = new SignIn();
-        signIn.signInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-        signIn.signInData("문경호", 1826015, "Ansrudgh1!", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-        signIn.signInData("허인영", 1234567, "Ansrudgh", "Ansrudgh", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-        signIn.signInData("허인영", 1234567, "Gjdlsdud1!", "Gjdlsdud1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
-        signIn.signInData("안기모", 5678909, "Ansrudgh1!@#", "Ansrudgh1!", "1999-08-17", "010-8975-3966", 0, "2", "컴퓨터공학과");
+        SignIn si = new SignIn();
+        si.signInData("문경호",1826015,"Ansrudgh1!","Ansrudgh1!","1999-08-17","010-8975-3966",0,"2","컴퓨터공학과");
     }
 }

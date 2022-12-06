@@ -7,29 +7,39 @@ import Database.link.dbControl;
 public class LogIn {
     dbControl userTable = new dbControl();
     int studentNum;
+
+    public int getStudentNum(){
+        return studentNum;
+    }
     //학번 존재하는지 확인
     protected boolean isExitStudentNumber(int studentNumber){
+        boolean result = false;
         String[] studentNumArr = userTable.getGetUserDataColumn("studentNumber");
         List<String> studentNumList = new ArrayList<>(Arrays.asList(studentNumArr));
         if ((studentNumList.indexOf(Integer.toString(studentNumber)))>=0) { //studentNumList내부에 parameter studentNumber값 존재
-            System.out.println("학번 존재");
             studentNum = studentNumber;
-            return true;
-        } else {
-            System.out.println("학번 없음");
-            return false;
+            result = true;
         }
+        if (result) {
+            System.out.println("학번 존재\t\t...OK");
+        } else {
+            System.out.println("학번 존재\t\t...ERROR");
+        }
+        return result;
     }
     
     protected boolean isRightPwd(String pwd){
+        boolean result = false;
         String studentInfo = userTable.getGetUserData(studentNum, "userPwd");
         if (studentInfo.equals(pwd)){
-            System.out.println("비밀번호 일치");
-            return true;
-        } else {
-            System.out.println("비밀번호 불일치");
-            return false;
+            result = true;
         }
+        if (result) {
+            System.out.println("비밀번호 일치\t\t...OK");
+        } else {
+            System.out.println("비밀번호 일치\t\t...ERROR");
+        }
+        return result;
     }
 
     public boolean logIn(int studentNumber, String pwd){
@@ -49,7 +59,7 @@ public class LogIn {
         return result;
     }
     public static void main(String[] args) {
-        LogIn login = new LogIn();
-        login.logIn(1234567, "Gjdlsdud1!");
+        LogIn li = new LogIn();
+        li.logIn(1826015, "Ansrudgh1");
     }
 }
