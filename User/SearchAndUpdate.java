@@ -37,7 +37,7 @@ public class SearchAndUpdate {
     public boolean updateUser(int studentNumber, String column, int data){
         boolean result = false;
         userTable.dbConnection();
-        String[] intDataArr = {"sex"};
+        String[] intDataArr = {"id","sex"};
         for (String string : intDataArr) {
             if (string.equals(column)){
                 userTable.getUpdateUser(studentNumber, column, data);
@@ -73,6 +73,6 @@ public class SearchAndUpdate {
     }
     public static void main(String[] args) {
         SearchAndUpdate sau = new SearchAndUpdate();
-        sau.updateUser(1826015, "phone", "010-5678-1234");
+        sau.updateUser(1, "id", 1);
     }
 }

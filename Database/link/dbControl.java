@@ -112,13 +112,12 @@ public class dbControl extends dbCon {
     }
     // Update Data
     protected void updateUser(int studentNumber, String column, int data) { // Type Int
-        String sql = "UPDATE user SET ?=? WHERE studentNumber=?";
+        String sql = ("UPDATE usertb SET "+column+"=? WHERE studentNumber=?");
         pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, column);
-            pstmt.setInt(2, data);
-            pstmt.setInt(3, studentNumber);
+            pstmt.setInt(1, data);
+            pstmt.setInt(2, studentNumber);
             pstmt.executeUpdate();
         } catch(Exception e) {
             e.printStackTrace();
@@ -129,7 +128,6 @@ public class dbControl extends dbCon {
         pstmt = null;
         try {
             pstmt = conn.prepareStatement(sql);
-            // pstmt.setString(1, column);
             pstmt.setString(1, data);
             pstmt.setInt(2, studentNumber);
             pstmt.executeUpdate();
