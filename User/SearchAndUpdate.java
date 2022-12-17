@@ -71,8 +71,4 @@ public class SearchAndUpdate {
         userTable.dbDisconnection();
         return result;
     }
-    public static void main(String[] args) {
-        SearchAndUpdate sau = new SearchAndUpdate();
-        sau.updateUser(1, "id", 1);
-    }
 }

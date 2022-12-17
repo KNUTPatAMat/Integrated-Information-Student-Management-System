@@ -1,17 +1,46 @@
-import User.*;
+// import java.awt.CardLayout;
+// import java.awt.Font;
 import java.util.Scanner;
 
+import User.*;
+
 public class Main {
+   
+//    JPanel cardPanel;
+//    CardLayout card;
+   Main m;
+   
     Scanner scanner = new Scanner(System.in);
     SignIn signIn = new SignIn();
     LogIn logIn = new LogIn();
     SearchAndUpdate sau = new SearchAndUpdate();
 
     int userStudentNumber;
-
+    
+    // public void setFrame(Main mro) {
+       
+    //    JFrame jf = new JFrame();
+    //    MainPanel mp = new MainPanel(mro);
+    //    //LoginPanel lp = new LoginPanel(mro);
+    //    //SignupPanel sp = new SignupPanel(mro);
+       
+    //    card = new CardLayout();
+       
+    //    cardPanel = new JPanel(card);
+    //    cardPanel.add(mp.mainPanel, "main");
+    //    //cardPanel.add(lp.mainPanel, "Login");
+    //    //cardPanel.add(sp.mainPanel, "Register");
+       
+    //    jf.add(cardPanel);
+    //    jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    //    jf.setSize(500, 700);
+    //    jf.setVisible(true);
+    // }
+    
     // CLI Area====================================================================================================================
     // 초기화면
     public void initMenu() {
+       
         clearScreen();
         userStudentNumber = 0;
         System.out.println("-----학적관리 시스템-----");
@@ -218,7 +247,84 @@ public class Main {
 
     public static void main(String[] args) {
         Main main = new Main();
+        // main.setFrame(main);
         main.initMenu();
     }
     
+}
+
+// class MainPanel extends JPanel implements ActionListener {
+   
+// //    JPanel mainPanel;
+   
+//    String userMode = "normal";
+//    Main m;
+// //    Font font = new Font("Sign up", Font.BOLD, 40);
+//    String admin = "admin";
+   
+//    public MainPanel(Main m) {
+//       this.m = m;
+      
+//       mainPanel = new JPanel();
+//       mainPanel.setLayout(new GridLayout(5,1));
+      
+//       JPanel centerPanel = new JPanel();
+//       JLabel MainLabel = new JLabel("Student Management");
+//       MainLabel.setFont(font);
+//       centerPanel.add(MainLabel);
+      
+//       JPanel userPanel = new JPanel();
+      
+//       JPanel gridBagMenu = new JPanel(new GridBagLayout());
+//       gridBagMenu.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
+//       GridBagConstraints c = new GridBagConstraints();
+      
+//       JPanel MainPanel = new JPanel();
+//       JButton MainButton = new JButton("Main");
+//       MainPanel.add(MainButton);
+      
+//       JPanel loginPanel = new JPanel();
+//       JButton loginButton = new JButton("Login");
+//       MainPanel.add(loginButton);
+      
+//       JPanel SignupPanel = new JPanel();
+//       JButton signupButton = new JButton("Signup");
+//       MainPanel.add(signupButton);
+      
+//       JButton ExitButton = new JButton("Exit");
+//       MainPanel.add(ExitButton);
+      
+//       mainPanel.add(centerPanel);
+//       mainPanel.add(userPanel);
+//       mainPanel.add(gridBagMenu);
+//       mainPanel.add(MainPanel);
+//       mainPanel.add(loginPanel);
+//       mainPanel.add(SignupPanel);
+      
+//       MainButton.addActionListener(this);
+      
+//       loginButton.addActionListener(new ActionListener() {
+//          @Override
+//          public void actionPerformed(ActionEvent e) {
+//             // TODO Auto-generated method stub
+//             m.card.next(m.cardPanel);
+//          }
+//       });
+      
+//       signupButton.addActionListener(new ActionListener() {
+
+//          @Override
+//          public void actionPerformed(ActionEvent e) {
+//             // TODO Auto-generated method stub
+//             m.card.next(m.cardPanel);
+//          }
+         
+//       });
+//    }
+//    @Override
+//    public void actionPerformed(ActionEvent e) {
+//       // TODO Auto-generated method stub
+      
+   }
+   
 }
