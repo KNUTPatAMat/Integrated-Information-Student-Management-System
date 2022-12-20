@@ -56,8 +56,8 @@ public class SearchAndUpdate {
     public boolean updateUser(int studentNumber, String column, String data){
         boolean result = false;
         userTable.dbConnection();
-        String[] intDataArr = {"studentName", "userPwd", "birth", "phone", "grade", "major"};
-        for (String string : intDataArr) {
+        String[] strDataArr = {"studentName", "userPwd", "birth", "phone", "grade", "major"};
+        for (String string : strDataArr) {
             if (string.equals(column)){
                 userTable.getUpdateUser(studentNumber, column, data);
                 result = true;

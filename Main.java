@@ -1,14 +1,8 @@
-// import java.awt.CardLayout;
-// import java.awt.Font;
 import java.util.Scanner;
 
 import User.*;
 
 public class Main {
-   
-//    JPanel cardPanel;
-//    CardLayout card;
-   Main m;
    
     Scanner scanner = new Scanner(System.in);
     SignIn signIn = new SignIn();
@@ -16,26 +10,6 @@ public class Main {
     SearchAndUpdate sau = new SearchAndUpdate();
 
     int userStudentNumber;
-    
-    // public void setFrame(Main mro) {
-       
-    //    JFrame jf = new JFrame();
-    //    MainPanel mp = new MainPanel(mro);
-    //    //LoginPanel lp = new LoginPanel(mro);
-    //    //SignupPanel sp = new SignupPanel(mro);
-       
-    //    card = new CardLayout();
-       
-    //    cardPanel = new JPanel(card);
-    //    cardPanel.add(mp.mainPanel, "main");
-    //    //cardPanel.add(lp.mainPanel, "Login");
-    //    //cardPanel.add(sp.mainPanel, "Register");
-       
-    //    jf.add(cardPanel);
-    //    jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    //    jf.setSize(500, 700);
-    //    jf.setVisible(true);
-    // }
     
     // CLI Area====================================================================================================================
     // 초기화면
@@ -118,11 +92,6 @@ public class Main {
     protected void viewAlluserMenu() {
         clearScreen();
         viewAllUser();
-        System.out.println("\n1. \t나가기");
-        int menuNum = scanner.nextInt();
-        if (menuNum == 1){
-            adminMenu();
-        }
     }
 
     // ControlArea====================================================================================================================
@@ -130,8 +99,8 @@ public class Main {
     // clear
     public static void clearScreen() {
         for (int i = 0; i < 80; i++)
-          System.out.println("");
-      }
+            System.out.println("");
+    }
 
     // menu 선택 흐름제어
     protected void menuControler(int index) {
@@ -184,20 +153,95 @@ public class Main {
         }
     }
 
+    protected void searchUser(int studentNum) {
+        clearScreen();
+        String[] studentData = sau.SeachUser(studentNum);
+        System.out.println("이름 : \t\t" + studentData[1]);
+        System.out.println("학번 : \t\t" + studentData[2]);
+        System.out.println("비밀번호 : \t" + studentData[3]);
+        System.out.println("생일 : \t\t" + studentData[4]);
+        System.out.println("전화번호 : \t" + studentData[5]);
+        System.out.println("성별 : \t\t" + studentData[6]);
+        System.out.println("학년 : \t\t" + studentData[7]);
+        System.out.println("학과 : \t\t" + studentData[8]);
+        System.out.println();
+    }
+
+    protected void userUpdateUser(int studentNum){
+        clearScreen();
+        String[] intDataArr = {"id","sex"};
+        String[] strDataArr = {"studentName", "userPwd", "birth", "phone", "grade", "major"};
+        for (String string : intDataArr){
+            System.out.println(string);
+        }
+        for (String string : strDataArr){
+            System.out.println(string);
+        }
+        System.out.println("수정하시려는 항목을 입력하세요");
+        String column = scanner.next();
+        for (String string : intDataArr) {
+            if (string.equals(column)){
+                System.out.println("수정하시려는 내용을 입력하세요");
+                int data = scanner.nextInt();
+                sau.updateUser(studentNum, column, data);
+            }
+        }
+        for (String string : strDataArr) {
+            if (string.equals(column)){
+                System.out.println("수정하시려는 내용을 입력하세요");
+                String data = scanner.next();
+                sau.updateUser(studentNum, column, data);
+            }
+        }
+        System.out.println(column+" 정보를 변경하였습니다.");
+    }
+
+    protected void adminSearchUser(){
+        clearScreen();
+        System.out.println("찾으시려는 학번을 입력하세요.");
+        int studentNum = scanner.nextInt();
+        searchUser(studentNum);
+    }
+    
+    protected void adminUpdateUser(){
+        clearScreen();
+        System.out.println("수정하시려는 학번을 입력하세요");
+        int studentNum = scanner.nextInt();
+        userUpdateUser(studentNum);
+    }
+
     //
     protected void adminMenuControler(int index) {
-        if ((index >= 1) || (index <= 4)){
+        if ((index >= 1) || (index <= 5)){
             switch (index) {
                 case 1: //전체학생 출력
                     viewAlluserMenu();
+                    System.out.println("\n1. \t나가기");
+                    int menuNum = scanner.nextInt();
+                    if (menuNum == 1){
+                        adminMenu();
+                    }
                     break;
-                case 2: //회원정보 수정
-
+                case 2: //선택학생 출력
+                    adminSearchUser();
+                    System.out.println("\n1. \t나가기");
+                    menuNum = scanner.nextInt();
+                    if (menuNum == 1){
+                        adminMenu();
+                    }
                     break;
-                case 3: //로그아웃
-                    initMenu();
+                case 3: // 정보 수정
+                    adminUpdateUser();
+                    System.out.println("\n1. \t나가기");
+                    menuNum = scanner.nextInt();
+                    if (menuNum == 1){
+                        adminMenu();
+                    }
                     break;
                 case 4:
+                    initMenu();
+                    break;
+                case 5:
                     System.out.println("종료합니다");
                     break;
             }
@@ -210,10 +254,20 @@ public class Main {
         if ((index >= 1) || (index <= 4)){
             switch (index) {
                 case 1: //정보조회
-
+                    searchUser(userStudentNumber);
+                    System.out.println("\n1. \t나가기");
+                    int menuNum = scanner.nextInt();
+                    if (menuNum == 1){
+                        userMenu();
+                    }
                     break;
                 case 2: //정보수정
-
+                    userUpdateUser(userStudentNumber);
+                    menuNum = scanner.nextInt();
+                    System.out.println("\n1. \t나가기");
+                    if (menuNum == 1){
+                        userMenu();
+                    }
                     break;
                 case 3: //로그아웃
                     initMenu();
@@ -241,6 +295,7 @@ public class Main {
             System.out.println("학년 : \t\t" + allUserArr[data][7]);
             System.out.println("학과 : \t\t" + allUserArr[data][8]);
             System.out.println();
+            
         }
     }
 
@@ -250,81 +305,4 @@ public class Main {
         // main.setFrame(main);
         main.initMenu();
     }
-    
-}
-
-// class MainPanel extends JPanel implements ActionListener {
-   
-// //    JPanel mainPanel;
-   
-//    String userMode = "normal";
-//    Main m;
-// //    Font font = new Font("Sign up", Font.BOLD, 40);
-//    String admin = "admin";
-   
-//    public MainPanel(Main m) {
-//       this.m = m;
-      
-//       mainPanel = new JPanel();
-//       mainPanel.setLayout(new GridLayout(5,1));
-      
-//       JPanel centerPanel = new JPanel();
-//       JLabel MainLabel = new JLabel("Student Management");
-//       MainLabel.setFont(font);
-//       centerPanel.add(MainLabel);
-      
-//       JPanel userPanel = new JPanel();
-      
-//       JPanel gridBagMenu = new JPanel(new GridBagLayout());
-//       gridBagMenu.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
-//       GridBagConstraints c = new GridBagConstraints();
-      
-//       JPanel MainPanel = new JPanel();
-//       JButton MainButton = new JButton("Main");
-//       MainPanel.add(MainButton);
-      
-//       JPanel loginPanel = new JPanel();
-//       JButton loginButton = new JButton("Login");
-//       MainPanel.add(loginButton);
-      
-//       JPanel SignupPanel = new JPanel();
-//       JButton signupButton = new JButton("Signup");
-//       MainPanel.add(signupButton);
-      
-//       JButton ExitButton = new JButton("Exit");
-//       MainPanel.add(ExitButton);
-      
-//       mainPanel.add(centerPanel);
-//       mainPanel.add(userPanel);
-//       mainPanel.add(gridBagMenu);
-//       mainPanel.add(MainPanel);
-//       mainPanel.add(loginPanel);
-//       mainPanel.add(SignupPanel);
-      
-//       MainButton.addActionListener(this);
-      
-//       loginButton.addActionListener(new ActionListener() {
-//          @Override
-//          public void actionPerformed(ActionEvent e) {
-//             // TODO Auto-generated method stub
-//             m.card.next(m.cardPanel);
-//          }
-//       });
-      
-//       signupButton.addActionListener(new ActionListener() {
-
-//          @Override
-//          public void actionPerformed(ActionEvent e) {
-//             // TODO Auto-generated method stub
-//             m.card.next(m.cardPanel);
-//          }
-         
-//       });
-//    }
-//    @Override
-//    public void actionPerformed(ActionEvent e) {
-//       // TODO Auto-generated method stub
-      
-   }
-   
 }
